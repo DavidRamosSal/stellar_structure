@@ -5,3 +5,4 @@ Solution to the structure equations on GR given numerical equations of state.
 * Sequences.ipynb - Solves the TOV equations using many equations of state for a range of central densities, generating different static sequences, good results.
 * Numeric static solution_one.ipynb - Original integration method for the TOV equations using scipy methods, overkill and little control. Better documented than the rest (for now).
 * Numeric static solution_two.ipynb - An attemp to solve the problem in a Lagrangian fluid description with the old methd, unsatisfactory.
+* Physical_Const.py - File with all physical constants on cgs units.
