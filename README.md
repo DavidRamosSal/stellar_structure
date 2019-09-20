@@ -1,7 +1,7 @@
 # stellar_structure
 Solution to the structure equations on GR given real tabulated dense matter equations of state.
 # Content
-The following calculations are done in the [Static_structure notebook](https://nbviewer.jupyter.org/github/DavidRamosSal/stellar_structure/blob/master/Static_structure.ipynb):
+The following calculations are done in the [stellar_structure_manual notebook](https://nbviewer.jupyter.org/github/DavidRamosSal/stellar_structure/blob/master/Static_structure_manual.ipynb):
 * Interpolation of EOS
 * Numerical solution to the TOV equations
 * Numerical derivatives of density and pressure profiles
