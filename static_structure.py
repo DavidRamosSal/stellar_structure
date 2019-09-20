@@ -32,13 +32,15 @@ def static(rho0,m0,r0,dr0,nu0,rhoarray,Parray,name,cutoff=0.0):
     
     f=open('results/' + name + '/' +str(np.log10(rho0*rhodim))+'.dat','w+')
     #ms=[]; ps=[]; rhos=[]; nus=[]; rs=[]  # creating lists to save the solution
-    f.write(str(m0)+'\t'+ str(PEoS(rho0))+'\t'+str(rho0)+'\t'+str(nu0)+'\t'+str(r0)+'\n')
+    lambdaa=0.0
+    f.write(str(m0)+'\t'+ str(PEoS(rho0))+'\t'+str(rho0)+'\t'+str(nu0)+'\t'+str(lambdaa)+'\t'+str(r0)+'\n')
     #ms.append(m0); ps.append(PEoS(rho0)); rhos.append(rho0); nus.append(nu0); rs.append(r0) 
     y0=[m0,PEoS(rho0),nu0]
     y=RK4step(TOV,r0,y0,dr0) # first step taken arbitrary (dr0)  
     dr=dr0
-    r=r0+dr 
-    f.write(str(y[0])+'\t'+ str(y[1])+'\t'+str(rhoEoS(y[1]))+'\t'+str(y[2])+'\t'+str(r)+'\n')
+    r=r0+dr
+    lambdaa = 0.5*np.log(1/(1-2*y[0]/r))
+    f.write(str(y[0])+'\t'+ str(y[1])+'\t'+str(rhoEoS(y[1]))+'\t'+str(y[2])+'\t'+str(lambdaa)+'\t'+str(r)+'\n')
     #ms.append(y[0]); ps.append(y[1]); rhos.append(rhoEoS(y[1])); nus.append(y[2]); rs.append(r) 
     while y[1] > 0.0 and rhoEoS(y[1])*rhodim > cutoff and dr>10*epsilon:
         #print('h2')
@@ -46,7 +48,8 @@ def static(rho0,m0,r0,dr0,nu0,rhoarray,Parray,name,cutoff=0.0):
         dr=stepsize(y,TOV(r,y))
         y=RK4step(TOV,r,y,dr)
         r=r+dr
-        f.write(str(y[0])+'\t'+ str(y[1])+'\t'+str(rhoEoS(y[1]))+'\t'+str(y[2])+'\t'+str(r)+'\n')
+        lambdaa = 0.5*np.log(1/(1-2*y[0]/r))
+        f.write(str(y[0])+'\t'+ str(y[1])+'\t'+str(rhoEoS(y[1]))+'\t'+str(y[2])+'\t'+str(lambdaa)+'\t'+str(r)+'\n')
         #ms.append(y[0]); ps.append(y[1]); rhos.append(rhoEoS(y[1])); nus.append(y[2]); rs.append(r)
     f.close()
     return np.array([y[0],r])
@@ -58,7 +61,7 @@ def MRrhoc(rhosc,m0,r0,dr0,rhoarray,Parray,name,cutoff=0.0):
     #MM=[];RR=[];rhorho=[]
     f=open('results/'+name+'/'+'MRrhoc'+'.dat','w+')
     for rhoc in rhosc/rhodim:
-        A = static(rhoc,m0,r0,dr0,0,rhoarray,Parray,name,cutoff)
+        A = static(rhoc,m0,r0,dr0,0.0,rhoarray,Parray,name,cutoff)
         f.write(str(A[1]*rdim*1e-5)+'\t'+str(A[0]*mdim/Msun)+'\t'+str(rhoc*rhodim)+'\n')
         #RR.append(r[-1]*rdim*1e-5); MM.append(m[-1]*mdim/Msun); rhorho.append(rho[0]*rhodim)
     f.close()
