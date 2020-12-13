@@ -9,6 +9,7 @@ me=9.11e-28
 mn=1.674e-24
 h=6.63e-27
 sigma=5.6704e-5
+rho0=2.7e14
 
 rhodim=mn**4.0*c**3.0/(8.0*np.pi**2*(h/(2.0*np.pi))**3.0) #Dimensions of energy density
 rdim=c/np.sqrt(rhodim*G) # Dimensions of radius
