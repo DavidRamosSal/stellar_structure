@@ -5,8 +5,8 @@ from scipy import integrate, interpolate
 
 def static(rho0,m0,r0,dr0,nu0,rhoarray,Parray,name,cutoff=0.0):
     """Builds a neutron star model from the initial values y0 and an interpolated EOS. The solver will start
-    in r0 with an arbitrary stepsize dr0 and will stop when the
-    pressure becomes negative. Returns the mass, pressure, density and nu profiles as functions of r. The parameter cutoff
+    in r0 with an arbitrary stepsize dr0 and will stop when the pressure becomes negative.
+    Returns the mass, pressure, density and nu profiles as functions of r. The parameter cutoff
     can be provided to stop the integration at the minimum energy density available in the EOS."""
     
     def PEoS(rho):

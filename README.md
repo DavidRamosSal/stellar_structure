@@ -1,14 +1,36 @@
 # stellar_structure
 Solution to the stellar structure equations for a static compact object in GR given real tabulated dense matter equations of state.
-# Content
-The [Stellar_structure_manual notebook](https://nbviewer.jupyter.org/github/DavidRamosSal/stellar_structure/blob/master/Static_structure_manual.ipynb) gives an in-depth description and validation of the integration routine created to solve the system of ODE's.
 
-The [RAnalysis notebook](https://nbviewer.jupyter.org/github/DavidRamosSal/stellar_structure/blob/master/RAnalysis.ipynb) uses the modularized version of the routine to analyze the physical acceptability of the stellar models obtained with 37 dense matter EOSs. 
- 
-<!--The following calculations can be found in the [stellar_structure_manual notebook](https://nbviewer.jupyter.org/github/DavidRamosSal/stellar_structure/blob/master/Static_structure_manual.ipynb):
-* Interpolation of EOS
-* Numerical solution to the TOV equations
-* Numerical derivatives of density and pressure profiles
-* M-R and M-rho_c diagrams
---->
-<!--- Extra material and ongoing calculations can be found in the older notebooks folder. --->
+#Setup
+If you use conda it's always a good idea to work on a clean environment
+
+```
+conda create -n stellarStructure python=3.7
+conda activate stellarStructure
+```
+Then, proceed to clone this repository
+
+```
+git clone https://github.com/DavidRamosSal/stellar_structure.git
+```
+
+Finally install the required libraries
+
+```
+pip install -r requirements.txt
+```
+
+#Usage
+Copy any numerical equation of state of your interest (it should have three columns (i) baryon density, (ii) pressure (p/c$^2$), (iii) energy density (epsilon/c$^2$)) in `equationsOFState/numerical` and run:
+
+```
+python3 main.py
+```
+
+Raw data will be saved in `results/$nameOfTheEOSFile$`. The profiles corresponding to a central density of "$10^{n}$ $g/cm^3$ will be saved as `results/$nameOfTheEOSFile$/$n$.dat` with the following columns: (i) mass (solar masses), (ii) pressure (p/c$^2$), (iii) density (epsilon/c$^2$), (iv) $\nu$ metric function, (v) $\lambda$ metric function and (vi) radius (km). The consolidated results are saved in `results/$nameOfTheEOSFile$/$MRrhoc$.dat` with columns: (i) radius (km), (ii) mass (solar masses) and (iii) density (g/cm$^3$).
+
+# Example
+In `example` you can find the results obtained with the 37 dense matter EOSs included on this repository. The [RAnalysis notebook](https://nbviewer.jupyter.org/github/DavidRamosSal/stellar_structure/blob/master/RAnalysis.ipynb) contains an analysis of those results.
+
+# Docs
+The [Stellar_structure_manual notebook](https://nbviewer.jupyter.org/github/DavidRamosSal/stellar_structure/blob/master/Static_structure_manual.ipynb) in `example` gives an in-depth description and validation of the integration routine.

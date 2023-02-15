@@ -3,7 +3,7 @@ import numpy as np
 from static_structure import static, MRrhoc
 
 owd=os.getcwd()
-path=os.chdir('EOS')
+path=os.chdir('equationsOfState/numerical')
 EOSlist=[]
 listOfEntries= os.scandir(path)
 for entry in listOfEntries:
@@ -15,7 +15,7 @@ os.mkdir('results')
 for EOS in EOSlist:
     name=EOS[:-4]
     os.mkdir('results/'+name)
-    rhoEOS,PEOS=np.loadtxt('EOS/'+EOS,usecols=(2,1),unpack=True)
+    rhoEOS,PEOS=np.loadtxt('equationsOfState/numerical/'+EOS,usecols=(2,1),unpack=True)
     if np.amin(rhoEOS)>1e+13:
         n=np.arange((1/32)*(31*np.log10(np.amin(rhoEOS))+np.log10(np.amax(rhoEOS))),np.log10(np.amax(rhoEOS)),0.01)
         print('H')
