@@ -41,7 +41,7 @@ The consolidated results are saved in `results/$nameOfTheEOSFile$/$MRrhoc$.dat` 
 3. density (g/cm $^3$)
 
 # Example
-In `example` you can find the results obtained with the 37 dense matter EOSs included on this repository. The [RAnalysis notebook](https://nbviewer.org/github/DavidRamosSal/stellar_structure/blob/master/example/RAnalysis.ipynb) contains an analysis of those results.
+In `example` you can find the results obtained with the 37 dense matter EOSs included on this repository. The [RAnalysis notebook](https://nbviewer.org/github/DavidRamosSal/stellar_structure/blob/master/example/RAnalysis.ipynbgio) contains an analysis of those results.
 
 # Docs
-The [Stellar_structure_manual notebook](https://nbviewer.org/github/DavidRamosSal/stellar_structure/blob/master/docs/staticStructureManual.ipynb) in `example` gives an in-depth description and validation of the integration routine.
+The [Stellar_structure_manual notebook](https://nbviewer.org/github/DavidRamosSal/stellar_structure/blob/master/docs/staticStructureManual.ipynb) in `docs` gives an in-depth description and validation of the integration routine.
